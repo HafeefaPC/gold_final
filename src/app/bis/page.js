@@ -61,21 +61,7 @@ export default function Home() {
         
       </div>
       <div className="flex flex-col justify-center items-center gap-3">
-        <button onClick={toggleDropdown} className="w-[490px] h-10 bg-yellow-500 text-white rounded">SELECT STATE</button>
-        {dropdownOpen && (
-          <div className="absolute bg-white text-black min-w-[160px] shadow-lg z-10">
-            {[
-              'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat',
-              'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra',
-              'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim',
-              'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'
-            ].map((state) => (
-              <a href="#" key={state} onClick={() => showState(state)} className="block px-4 py-2 hover:bg-gray-100">
-                {state}
-              </a>
-            ))}
-          </div>
-        )}
+        
         <div className="flex justify-center mt-4">
           <a href="owner.html"><button className="bg-yellow-500 text-white py-2 px-4 rounded mr-2">FIND OWNER</button></a>
           <a href="huidlisting.html"><button className="bg-yellow-500 text-white py-2 px-4 rounded">HUID LISTING</button></a>

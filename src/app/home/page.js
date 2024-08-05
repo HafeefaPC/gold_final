@@ -13,15 +13,15 @@ export default function HomeLogin() {
         />
       </Head>
 
-      <div className="bg-aliceblue h-screen flex flex-col">
+      <div className="bg-aliceblue h-screen overflow-hidden flex flex-col">
         <div className="flex ">
-          <div className="w-1/2 h-full">
-            <a href="../index.html">
+          <div className="w-1/2 ">
+            
               <img src="/assets/img/gold.jpg" alt="" className="w-10/12 h-full  object-cover" />
-            </a>
+            
           </div>
           <div className="w-1/2 flex flex-col items-center justify-center">
-            <div className="mb-8">
+            <div className="">
               <img src="/assets/img/logo.svg" alt="logo" className="h-72" />
             </div>
             <div className="flex flex-col  items-center">

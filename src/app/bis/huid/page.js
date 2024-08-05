@@ -27,13 +27,15 @@ export default function HUIDListing() {
         />
       </Head>
 
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-800">
-        <a href="/../home" className="bg-yellow-400 text-white px-6 py-2 rounded-full text-lg mb-2">
+      <div className="flex flex-col  items-center justify-center h-screen bg-gray-800">
+        <div className=' flex justify-between gap-72'>
+        <a href="/../home" className="bg-yellow-400 text-white px-6 py-2 h-100 rounded-full text-lg mb-6">
           Home
         </a>
-        <a href="../../bis" className="bg-yellow-400 text-white px-6 py-2 rounded-full text-lg mb-6">
+        <a href="../../bis" className="bg-yellow-400 text-white px-6 py-2 h-100 rounded-full text-lg mb-6">
           Back
         </a>
+        </div>
         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
           <label className="text-xl font-bold">HUID Listing</label><br />
           <label htmlFor="aadharInput" className="block text-gray-700">Enter Aadhar Number:</label>
