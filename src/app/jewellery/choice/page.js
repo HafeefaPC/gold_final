@@ -45,8 +45,8 @@ const Page = () => {
         <div className="w-full md:w-1/3 px-4 mb-4">
           <div className="card bg-white shadow rounded-lg">
             <div className="card-body text-center p-4">
-              <h4 className="text-xl font-semibold p-3">New Registration</h4>
-              <a href="./new_reg.html">
+              <h4 className="text-xl font-semibold p-3 text-black">New Registration</h4>
+              <a href="/jewellery/choice/new_regis">
                 <button type="button" className="w-full py-2 px-4 bg-yellow-400 text-white text-lg rounded-lg">
                   <span>Get started</span>
                 </button>
@@ -58,7 +58,7 @@ const Page = () => {
         <div className="w-full md:w-1/3 px-4 mb-4">
           <div className="card bg-white shadow rounded-lg">
             <div className="card-body text-center p-4">
-              <h4 className="text-xl font-semibold p-3">Ownership Transfer</h4>
+              <h4 className="text-xl font-semibold p-3 text-black">Ownership Transfer</h4>
               <a href="./owner_trans.html">
                 <button type="button" className="w-full py-2 px-4 bg-yellow-400 text-white text-lg rounded-lg">
                   <span>Get started</span>
@@ -71,7 +71,7 @@ const Page = () => {
         <div className="w-full md:w-1/3 px-4 mb-4">
           <div className="card bg-white shadow rounded-lg">
             <div className="card-body text-center p-4">
-              <h4 className="text-xl font-semibold p-3">Gold Selling</h4>
+              <h4 className="text-xl font-semibold p-3 text-black">Gold Selling</h4>
               <a href="./sale.html">
                 <button type="button" className="w-full py-2 px-4 bg-yellow-400 text-white text-lg rounded-lg">
                   <span>Get started</span>

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+
 const states = [
   'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
   'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka',
@@ -27,7 +28,7 @@ export default function BISHome() {
       return (
         <div>
           <h1 className="text-2xl font-bold text-yellow-400 mb-4">Jewellery Information in {stateName}</h1>
-          <table className="w-full border-collapse border border-gray-400">
+          <table className="w-4/5 mx-auto border-collapse">
             <thead>
               <tr>
                 <th className="border border-gray-400 p-2 text-left">JEWELLERY ID</th>
@@ -52,7 +53,7 @@ export default function BISHome() {
                   <td className="border border-gray-400 p-2">{jewellery.name}</td>
                   <td className="border border-gray-400 p-2">{jewellery.district}</td>
                   <td className="border border-gray-400 p-2">
-                    <Link href="./bis/view" className="text-green-500 hover:underline">View</Link>
+                    <Link href="./view" className="text-green-500 hover:underline">View</Link>
                   </td>
                 </tr>
               ))}

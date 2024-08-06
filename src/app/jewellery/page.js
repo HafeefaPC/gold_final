@@ -1,121 +1,49 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Web3 from 'web3';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [isConnected, setIsConnected] = useState(false);
+  const [userAddress, setUserAddress] = useState('');
+  const router = useRouter();
 
-  const contractAddress = "0x50335cB59861b915d6b3A4f4c129fadb3c81EcFe";
-  const abi =  [
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "jewelleryID",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "password",
-				"type": "string"
-			}
-		],
-		"name": "JewelleryPasswordSet",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "jewelleryToPassword",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-            }
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "jewelleryID",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "password",
-				"type": "string"
-			}
-		],
-		"name": "setPassword",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "jewelleryID",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "password",
-				"type": "string"
-            }
-		],
-		"name": "validateIDAndPassword",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
-
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const connectWallet = async () => {
     if (typeof window.ethereum !== 'undefined') {
-      const web3 = new Web3(window.ethereum);
       try {
+        // Request account access
         await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const contract = new web3.eth.Contract(abi, contractAddress);
-        
-        const result = await contract.methods.validateIDAndPassword(username, password).call();
-        if (result) {
-          alert("Login successful!");
-          window.location.href = "choice.html";
-        } else {
-          alert("Invalid username or password. Please try again.");
-        }
+        const web3 = new Web3(window.ethereum);
+        const accounts = await web3.eth.getAccounts();
+        setUserAddress(accounts[0]);
+        setIsConnected(true);
+        alert("Wallet connected successfully!");
+		console.log("Wallet connected successfully!");
+        // Redirect to choice page after successful connection
+        router.push("/choice");
       } catch (error) {
-        console.error("Error:", error);
-        alert("An error occurred. Please try again later.");
+        console.error("Failed to connect wallet:", error);
+        alert("Failed to connect wallet. Please try again.");
       }
     } else {
-      alert("Please install MetaMask to use this feature.");
+      alert("Please install MetaMask!");
     }
   };
+
+  useEffect(() => {
+    // Check if wallet is already connected
+    if (typeof window.ethereum !== 'undefined') {
+      window.ethereum.request({ method: 'eth_accounts' })
+        .then(accounts => {
+          if (accounts.length > 0) {
+            setUserAddress(accounts[0]);
+            setIsConnected(true);
+          }
+        })
+        .catch(console.error);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-black bg-opacity-90 flex items-center justify-center">
@@ -125,41 +53,28 @@ export default function Home() {
       </Head>
 
       <div className="bg-gray-100 p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center">Jewellery Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="username" className="block mb-2 text-sm font-medium">
-              Register Id
-            </label>
-            <input
-              type="text"
-              id="username"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              required
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="mb-6">
-            <label htmlFor="password" className="block mb-2 text-sm font-medium">
-              Password:
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+        <h2 className="text-2xl font-bold mb-6 text-center text-black">
+          Jewellery Login
+        </h2>
+        {!isConnected ? (
           <button
-            type="submit"
+            onClick={connectWallet}
             className="w-full bg-yellow-400 text-white py-2 px-4 rounded-md hover:bg-white hover:text-yellow-400 hover:border hover:border-yellow-400 transition-colors"
           >
-            Login
+            Connect with MetaMask
           </button>
-        </form>
+        ) : (
+			<div className="text-center text-black">
+            <p>Connected with address:</p>
+            <p className="font-mono break-all">{userAddress}</p>
+            <button
+              onClick={() => router.push("/jewellery/choice")}
+              className="mt-4 w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-white hover:text-green-500 hover:border hover:border-green-500 transition-colors"
+            >
+              Go to Choice
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

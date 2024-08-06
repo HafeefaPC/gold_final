@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Web3 from 'web3';
+import contractABI from '../../../abi/function.json';
+import { functionAddress } from '../../../constants/adressess.js';
 
 export default function NewRegister() {
   const [username, setUsername] = useState('');
@@ -22,92 +24,7 @@ export default function NewRegister() {
           const web3 = new Web3(window.ethereum);
           setWeb3(web3);
 
-          // Contract address and ABI
-          const contractAddress = "0x50335cB59861b915d6b3A4f4c129fadb3c81EcFe";
-          const abi =  [
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": true,
-                        "internalType": "uint256",
-                        "name": "jewelleryID",
-                        "type": "uint256"
-                    },
-                    {
-                        "indexed": false,
-                        "internalType": "string",
-                        "name": "password",
-                        "type": "string"
-                    }
-                ],
-                "name": "JewelleryPasswordSet",
-                "type": "event"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "jewelleryToPassword",
-                "outputs": [
-                    {
-                        "internalType": "string",
-                        "name": "",
-                        "type": "string"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "jewelleryID",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "password",
-                        "type": "string"
-                    }
-                ],
-                "name": "setPassword",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "jewelleryID",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "password",
-                        "type": "string"
-                    }
-                ],
-                "name": "validateIDAndPassword",
-                "outputs": [
-                    {
-                        "internalType": "bool",
-                        "name": "",
-                        "type": "bool"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            }
-        ]
-
-          const contract = new web3.eth.Contract(abi, contractAddress);
+          const contract = new web3.eth.Contract(contractABI , functionAddress);
           setContract(contract);
         } catch (error) {
           console.error("Error initializing Web3:", error);
@@ -159,9 +76,9 @@ export default function NewRegister() {
 
       <div className="flex justify-center items-center mt-20">
         <div className="bg-white p-8 rounded-lg shadow-md w-96">
-          <h2 className="text-2xl font-bold mb-6">New User Registration</h2>
+          <h2 className="text-2xl font-bold mb-6 text-black">New User Registration</h2>
           <div className="mb-4">
-            <label htmlFor="username" className="block mb-2">Name:</label>
+            <label htmlFor="username" className="block mb-2 text-black">Name:</label>
             <input
               type="text"
               id="username"
@@ -172,7 +89,7 @@ export default function NewRegister() {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="aadharIn" className="block mb-2">Aadhaar No:</label>
+            <label htmlFor="aadharIn" className="block mb-2 text-black">Aadhaar No:</label>
             <input
               type="text"
               id="aadharIn"
@@ -183,7 +100,7 @@ export default function NewRegister() {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="huidIn" className="block mb-2">HUID:</label>
+            <label htmlFor="huidIn" className="block mb-2 text-black">HUID:</label>
             <input
               type="text"
               id="huidIn"
@@ -194,12 +111,12 @@ export default function NewRegister() {
             />
           </div>
           {showOtp && (
-            <div className="mb-4">
+            <div className="mb-4 text-black">
               <label htmlFor="otp" className="block mb-2">Enter OTP:</label>
               <input
                 type="text"
                 id="otp"
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 border text-black border-gray-300 rounded"
                 required
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}

@@ -13,7 +13,7 @@ export default function HomeLogin() {
         />
       </Head>
 
-      <div className="bg-aliceblue h-screen overflow-hidden flex flex-col">
+      <div className="bg-aliceblue h-screen  bg- black overflow-hidden flex flex-col">
         <div className="flex ">
           <div className="w-1/2 ">
             
@@ -25,22 +25,22 @@ export default function HomeLogin() {
               <img src="/assets/img/logo.svg" alt="logo" className="h-72" />
             </div>
             <div className="flex flex-col  items-center">
-              <a href="../users/user.html">
+              <a href="/users">
                 <button className="w-[200px]  p-3 h-15 mb-5 border border-yellow-300  bg-goldenrod text-white rounded-lg hover:bg-whitesmoke hover:border hover:border-goldenrod">
                   <span className="text-lg ">CITIZEN</span>
                 </button>
               </a>
-              <a href="../Bank/banklogin.html">
+              <a href="/bank">
                 <button className="w-[200px]   p-3 h-15  border border-yellow-300 h-15 mb-5 bg-goldenrod text-white rounded-lg hover:bg-whitesmoke hover:border hover:border-goldenrod">
                   <span className="text-lg">BANK</span>
                 </button>
               </a>
-              <a href="../Jewellery/login.html">
+              <a href="/jewellery">
                 <button className="w-[200px] p-3 h-15  border border-yellow-300 h-15 mb-5 bg-goldenrod text-white rounded-lg hover:bg-whitesmoke hover:border hover:border-goldenrod">
                   <span className="text-lg">JEWELLERY</span>
                 </button>
               </a>
-              <a href="../bis/page">
+              <a href="/bis">
                 <button className="w-[200px] p-3 h-15  border border-yellow-300 h-15 mb-5 bg-goldenrod text-white rounded-lg hover:bg-whitesmoke hover:border hover:border-goldenrod">
                   <span className="text-lg">BIS</span>
                 </button>
