@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Web3 from 'web3';
-import contractABI from './abi/function.json';
+import contractABI from '../../../abi/function.json';
 import { functionAddress } from '../../../constants/adressess.js';
 
 export default function Sales() {
