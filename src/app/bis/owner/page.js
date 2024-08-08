@@ -3,7 +3,7 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import Web3 from 'web3';
-import contractABI from './abi/function.json';
+import contractABI from '../../abi/function.json';
 import { functionAddress } from '../../constants/adressess.js';
 
 export default function FindOwner() {
@@ -63,7 +63,7 @@ export default function FindOwner() {
       <div className="flex flex-col items-center justify-center gap-10 min-h-screen bg-gray-900">
         <div className="flex justify-center gap-80 ">
           <a href="/" className="border border-yellow-200 bg-yellow-600 rounded-3xl p-3">Home</a>
-          <a href="./BIShome.html" className="border border-yellow-200 bg-yellow-600 rounded-3xl p-3">Back</a>
+          <a href="/bis" className="border border-yellow-200 bg-yellow-600 rounded-3xl p-3">Back</a>
         </div>
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
           <h1 className="text-2xl font-bold mb-4">Fetch Aadhar</h1>

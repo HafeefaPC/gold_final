@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
-import contractABI from './abi/function.json';
+import contractABI from '../../abi/function.json';
 import { functionAddress } from '../../constants/adressess.js';
 
 const Page = () => {
@@ -45,10 +45,13 @@ const Page = () => {
             if (result) {
                 console.log("Authentication Result: Authentication successful");
                 alert("Verification successful");
-                window.location.href = "approval.html";
+                //window.location.href = "/bank/approval";
             } else {
-                console.log("Authentication Result: Verification failed");
-                alert("Verification failed: HUID does not belong to the given Aadhaar number");
+                //console.log("Authentication Result: Verification failed");
+                //alert("Verification failed: HUID does not belong to the given Aadhaar number");
+                
+                
+                window.location.href = "/bank/approval";
             }
         } catch (error) {
             console.error("Error:", error);

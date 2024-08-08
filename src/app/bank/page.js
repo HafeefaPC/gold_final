@@ -138,7 +138,7 @@ const Page = () => {
                 console.log('Validation result:', result);
                 if (result) {
                     alert('Login successful!');
-                    window.location.href = '/bankhome';
+                    window.location.href = '/bank/bankhome';
                 } else {
                     alert('Invalid ID or password. Please try again.');
                 }

@@ -31,16 +31,16 @@ const Page = () => {
           </a>
           <ul className="flex space-x-4">
             <li className="nav-item">
-              <a href="../Homelogin/Homelogin.html" className="nav-link text-yellow-400 hover:text-white">Home</a>
+              <a href="/home" className="nav-link text-yellow-400 hover:text-white">Home</a>
             </li>
             <li className="nav-item">
-              <a href="./new_reg.html" className="nav-link text-yellow-400 hover:text-white">Register</a>
+              <a href="/jewellery/choice/new_regis" className="nav-link text-yellow-400 hover:text-white">Register</a>
             </li>
             <li className="nav-item">
-              <a href="./owner_trans.html" className="nav-link text-yellow-400 hover:text-white">Ownership</a>
+              <a href="/jewellery/choice/owner_trans" className="nav-link text-yellow-400 hover:text-white">Ownership</a>
             </li>
             <li className="nav-item">
-              <a href="./sale.html" className="nav-link text-yellow-400 hover:text-white">Sell</a>
+              <a href="/jewellery/choice/sales" className="nav-link text-yellow-400 hover:text-white">Sell</a>
             </li>
           </ul>
         </header>

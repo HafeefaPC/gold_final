@@ -10,7 +10,7 @@ const ApprovalPage = () => {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <a href="../Homelogin/Homelogin.html" className="absolute top-8 right-4 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-400 transition duration-300">
+      <a href="/home" className="absolute top-8 right-4 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-400 transition duration-300">
         Home
       </a>
       <div className="container mx-auto pt-16">

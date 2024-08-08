@@ -1,17 +1,241 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Web3 from 'web3';
-import contractABI from '../../../abi/function.json';
-import { functionAddress } from '../../../constants/adressess.js';
 
-export default function NewRegister() {
+const contractAddress = "0x50147A7A062fF4762fed9b85428C114655b89717";
+const abi = [
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": false,
+              "internalType": "string",
+              "name": "huid",
+              "type": "string"
+          },
+          {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "oldAadhar",
+              "type": "uint256"
+          },
+          {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "newAadhar",
+              "type": "uint256"
+          }
+      ],
+      "name": "AadharUpdated",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "aadhar",
+              "type": "uint256"
+          },
+          {
+              "indexed": false,
+              "internalType": "string",
+              "name": "huid",
+              "type": "string"
+          }
+      ],
+      "name": "HUIDAdded",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "aadhar",
+              "type": "uint256"
+          },
+          {
+              "indexed": false,
+              "internalType": "string",
+              "name": "huid",
+              "type": "string"
+          }
+      ],
+      "name": "HUIDRemoved",
+      "type": "event"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "name": "aadharToHUIDs",
+      "outputs": [
+          {
+              "internalType": "string",
+              "name": "",
+              "type": "string"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "aadhar",
+              "type": "uint256"
+          },
+          {
+              "internalType": "string",
+              "name": "huid",
+              "type": "string"
+          }
+      ],
+      "name": "addHUID",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "string",
+              "name": "huid",
+              "type": "string"
+          }
+      ],
+      "name": "getAadhar",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "aadhar",
+              "type": "uint256"
+          }
+      ],
+      "name": "getHUIDs",
+      "outputs": [
+          {
+              "internalType": "string[]",
+              "name": "",
+              "type": "string[]"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "string",
+              "name": "",
+              "type": "string"
+          }
+      ],
+      "name": "huidToAadhar",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "aadhar",
+              "type": "uint256"
+          },
+          {
+              "internalType": "string",
+              "name": "huid",
+              "type": "string"
+          }
+      ],
+      "name": "isHUIDCorresponding",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "aadhar",
+              "type": "uint256"
+          },
+          {
+              "internalType": "string",
+              "name": "huid",
+              "type": "string"
+          }
+      ],
+      "name": "removeHUID",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "newAadhar",
+              "type": "uint256"
+          },
+          {
+              "internalType": "string",
+              "name": "huid",
+              "type": "string"
+          }
+      ],
+      "name": "updateAadhar",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  }
+]
+
+const NewRegister = () => {
   const [username, setUsername] = useState('');
   const [aadhar, setAadhar] = useState('');
   const [huid, setHuid] = useState('');
   const [otp, setOtp] = useState('');
-  const [showOtp, setShowOtp] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
 
@@ -19,13 +243,12 @@ export default function NewRegister() {
     const initWeb3 = async () => {
       if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
         try {
-          // Request account access
           await window.ethereum.request({ method: "eth_requestAccounts" });
-          const web3 = new Web3(window.ethereum);
-          setWeb3(web3);
+          const web3Instance = new Web3(window.ethereum);
+          setWeb3(web3Instance);
 
-          const contract = new web3.eth.Contract(contractABI , functionAddress);
-          setContract(contract);
+          const contractInstance = new web3Instance.eth.Contract(abi, contractAddress);
+          setContract(contractInstance);
         } catch (error) {
           console.error("Error initializing Web3:", error);
         }
@@ -38,7 +261,9 @@ export default function NewRegister() {
   }, []);
 
   const sendOtp = () => {
-    setShowOtp(true);
+    setOtpSent(true);
+    alert('OTP sent successfully!');
+    console.log('OTP sent successfully');
   };
 
   const addHUID = async () => {
@@ -49,12 +274,14 @@ export default function NewRegister() {
 
     try {
       const accounts = await web3.eth.getAccounts();
-      await contract.methods.addHUID(huid, aadhar).send({ from: accounts[0] });
+      const tx=contract.methods.addHUID(parseInt(aadhar), huid).send({ from: accounts[0] });
+      console.log("account:",tx)
       console.log("HUID added successfully");
-      // You can add more logic here, like showing a success message or redirecting
+      alert("HUID added successfully");
     } catch (error) {
       console.error("Error adding HUID:", error);
-      // Handle the error, maybe show an error message to the user
+      console.log("Detailed error information:", error);
+      alert("Error adding HUID: " + error.message);
     }
   };
 
@@ -67,9 +294,9 @@ export default function NewRegister() {
           </Link>
           <ul className="flex space-x-4">
             <li><Link href="/home" className="text-yellow-400 hover:text-yellow-300">Home</Link></li>
-            <li><Link href="/register" className="text-yellow-400 hover:text-yellow-300">Register</Link></li>
-            <li><Link href="/ownership" className="text-yellow-400 hover:text-yellow-300">Ownership</Link></li>
-            <li><Link href="/sell" className="text-yellow-400 hover:text-yellow-300">Sell</Link></li>
+            <li><Link href="/jewellery/choice/new_regis" className="text-yellow-400 hover:text-yellow-300">Register</Link></li>
+            <li><Link href="/jewellery/choice/owner_trans" className="text-yellow-400 hover:text-yellow-300">Ownership</Link></li>
+            <li><Link href="/jewellery/choice/sales" className="text-yellow-400 hover:text-yellow-300">Sell</Link></li>
           </ul>
         </header>
       </div>
@@ -110,7 +337,7 @@ export default function NewRegister() {
               onChange={(e) => setHuid(e.target.value)}
             />
           </div>
-          {showOtp && (
+          {otpSent && (
             <div className="mb-4 text-black">
               <label htmlFor="otp" className="block mb-2">Enter OTP:</label>
               <input
@@ -123,7 +350,7 @@ export default function NewRegister() {
               />
             </div>
           )}
-          {!showOtp ? (
+          {!otpSent ? (
             <button
               onClick={sendOtp}
               className="w-full p-2 bg-yellow-400 text-white rounded hover:bg-white hover:text-yellow-400 hover:border hover:border-yellow-400"
@@ -142,4 +369,6 @@ export default function NewRegister() {
       </div>
     </div>
   );
-}
+};
+
+export default NewRegister;

@@ -104,10 +104,10 @@ export default function BISHome() {
         </div>
 
         <div className="mt-4 space-x-4">
-          <Link href="owner" className="bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-500 transition duration-300">
+          <Link href="/bis/owner" className="bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-500 transition duration-300">
             FIND OWNER
           </Link>
-          <Link href="huidlisting" className="bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-500 transition duration-300">
+          <Link href="/bis/huid" className="bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-500 transition duration-300">
             HUID LISTING
           </Link>
         </div>

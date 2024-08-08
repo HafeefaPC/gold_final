@@ -28,13 +28,13 @@ const Page = () => {
               <a href="../Homelogin/Homelogin.html" className="nav-link text-yellow-400 hover:text-white">Home</a>
             </li>
             <li className="nav-item">
-              <a href="./new_reg.html" className="nav-link text-yellow-400 hover:text-white">Register</a>
+              <a href="/jewellery/choice/new_regis" className="nav-link text-yellow-400 hover:text-white">Register</a>
             </li>
             <li className="nav-item">
-              <a href="./owner_trans.html" className="nav-link text-yellow-400 hover:text-white">Ownership</a>
+              <a href="/jewellery/choice/owner_trans" className="nav-link text-yellow-400 hover:text-white">Ownership</a>
             </li>
             <li className="nav-item">
-              <a href="./sale.html" className="nav-link text-yellow-400 hover:text-white">Sell</a>
+              <a href="/jewellery/choice/sales" className="nav-link text-yellow-400 hover:text-white">Sell</a>
             </li>
           </ul>
         </header>
@@ -59,7 +59,7 @@ const Page = () => {
           <div className="card bg-white shadow rounded-lg">
             <div className="card-body text-center p-4">
               <h4 className="text-xl font-semibold p-3 text-black">Ownership Transfer</h4>
-              <a href="./owner_trans.html">
+              <a href="/jewellery/choice/owner_trans">
                 <button type="button" className="w-full py-2 px-4 bg-yellow-400 text-white text-lg rounded-lg">
                   <span>Get started</span>
                 </button>
@@ -72,7 +72,7 @@ const Page = () => {
           <div className="card bg-white shadow rounded-lg">
             <div className="card-body text-center p-4">
               <h4 className="text-xl font-semibold p-3 text-black">Gold Selling</h4>
-              <a href="./sale.html">
+              <a href="/jewellery/choice/sales">
                 <button type="button" className="w-full py-2 px-4 bg-yellow-400 text-white text-lg rounded-lg">
                   <span>Get started</span>
                 </button>
