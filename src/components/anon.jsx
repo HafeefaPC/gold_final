@@ -24,6 +24,10 @@ export default function anon({ address }) {
         if (fields.revealState) fieldsToReveal.push('revealState');
         return fieldsToReveal;
     };
+    const login = () => {
+        alert('Login successful!');
+        window.location.href = 'users/userhuid';
+      };
 
     const dataMapping = {
         revealAgeAbove18: 'ageAbove18',
@@ -140,6 +144,13 @@ export default function anon({ address }) {
                                     </p>
                                 );
                         })}
+                         <button
+                type="button"
+                onClick={login}
+                className="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 transition duration-300"
+              >
+                Login
+              </button>
                     </div>
                 )}
             </div>

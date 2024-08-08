@@ -74,7 +74,7 @@ export default function BISHome() {
     <div className="min-h-screen bg-black bg-opacity-90 text-white">
       <div className="container mx-auto flex items-center justify-center h-20 relative">
         <h1 className="text-3xl font-bold text-yellow-400">BUREAU OF INDIAN STANDARDS</h1>
-        <Link href="../Homelogin/Homelogin" className="absolute top-16 right-4 bg-yellow-400 text-white px-5 py-2 rounded-full text-lg hover:bg-yellow-500 transition duration-300">
+        <Link href="../home" className="absolute top-16 right-4 bg-yellow-400 text-white px-5 py-2 rounded-full text-lg hover:bg-yellow-500 transition duration-300">
           Home
         </Link>
       </div>
@@ -104,10 +104,10 @@ export default function BISHome() {
         </div>
 
         <div className="mt-4 space-x-4">
-          <Link href="/bis/owner" className="bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-500 transition duration-300">
+          <Link href="bis/owner" className="bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-500 transition duration-300">
             FIND OWNER
           </Link>
-          <Link href="/bis/huid" className="bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-500 transition duration-300">
+          <Link href="bis/huid" className="bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-500 transition duration-300">
             HUID LISTING
           </Link>
         </div>
