@@ -1,5 +1,6 @@
 import Head from 'next/head';
 
+
 const Page = () => {
   return (
     <div className="bg-black min-h-screen">

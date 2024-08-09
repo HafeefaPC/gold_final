@@ -270,6 +270,7 @@ const NewRegister = () => {
     if (!web3 || !contract) {
       console.error("Web3 or contract not initialized");
       return;
+
     }
 
     try {
@@ -278,6 +279,7 @@ const NewRegister = () => {
       console.log("account:",tx)
       console.log("HUID added successfully");
       alert("HUID added successfully");
+      window.location.href = './';
     } catch (error) {
       console.error("Error adding HUID:", error);
       console.log("Detailed error information:", error);

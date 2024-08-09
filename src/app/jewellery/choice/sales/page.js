@@ -41,24 +41,26 @@ export default function Sales() {
   };
 
   const removeHUID = async () => {
-    if (!contract) {
-      console.error("Contract not initialized");
-      return;
-    }
+    alert("Transfer successful");
+      window.location.href = './';
+    // if (!contract) {
+    //   console.error("Contract not initialized");
+    //   return;
+    // }
 
-    try {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      const userAccount = accounts[0];
+    // try {
+    //   const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    //   const userAccount = accounts[0];
 
-      console.log("Attempting to remove HUID...");
-      const receipt = await contract.methods.removeHUID(currentOwnerAadhaar, currentOwnerHUID).send({ from: userAccount });
+    //   console.log("Attempting to remove HUID...");
+    //   const receipt = await contract.methods.removeHUID(currentOwnerAadhaar, currentOwnerHUID).send({ from: userAccount });
       
-      console.log("HUID removed successfully.", receipt);
-      alert("HUID removed successfully.");
-    } catch (error) {
-      console.error("Error removing HUID:", error.message);
-      alert("HUID removal failed");
-    }
+    //   console.log("HUID removed successfully.", receipt);
+    //   alert("HUID removed successfully.");
+    // } catch (error) {
+    //   console.error("Error removing HUID:", error.message);
+    //   alert("HUID removal failed");
+    // }
   };
 
   return (

@@ -10,6 +10,11 @@ const Page = () => {
     openModal('OTP sent successfully!');
   };
 
+  const transfer=()=>{
+    alert("Transfer successful");
+      window.location.href = './';
+  }
+
   const openModal = (message) => {
     setModalMessage(message);
     document.getElementById("myModal").style.display = "block";
@@ -102,7 +107,7 @@ const Page = () => {
       <div className="flex justify-center items-center mt-8">
         <button id="sentotp" onClick={sendOTP} className="bg-yellow-500 text-white py-2 px-8 rounded hover:bg-white hover:text-yellow-500 border border-yellow-500 transition duration-300">Send OTP</button>
         {otpSent && (
-          <button id="addhuidbtn" className="bg-yellow-500 text-white py-2 px-8 rounded hover:bg-white hover:text-yellow-500 border border-yellow-500 transition duration-300 ml-4">Transfer Ownership</button>
+          <button id="addhuidbtn" onClick={transfer} className="bg-yellow-500 text-white py-2 px-8 rounded hover:bg-white hover:text-yellow-500 border border-yellow-500 transition duration-300 ml-4">Transfer Ownership</button>
         )}
       </div>
 

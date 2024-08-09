@@ -13,7 +13,7 @@ export default function HomeLogin() {
         />
       </Head>
 
-      <div className="bg-aliceblue h-screen  bg- black overflow-hidden flex flex-col">
+      <div className="bg-aliceblue h-screen  bg-black overflow-hidden flex flex-col">
         <div className="flex ">
           <div className="w-1/2 ">
             
